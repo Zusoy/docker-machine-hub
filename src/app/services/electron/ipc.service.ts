@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IpcRenderer } from 'electron';
+import { MainThreadEvent } from 'electron/events';
 
 /**
  * IPC Service
@@ -64,12 +65,11 @@ export class IpcService
     /**
      * Send an Event to the Main Thread
      */
-    public send(channel: string, ...args): void
+    public send(channel: MainThreadEvent, ...args): void
     {
         if (!this.ipc)
             return;
-        
-        console.log(`Send the ${channel} Event to the Main Thread...`);
+            
         this.ipc.send(channel, ...args);
     }
 }

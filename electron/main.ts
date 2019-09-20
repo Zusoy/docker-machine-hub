@@ -3,15 +3,17 @@
  * Main Thread
  */
 import {
-    app, 
-    BrowserWindow, 
+    app,
+    BrowserWindow,
     Notification,
-    NotificationConstructorOptions, 
-    ipcMain
+    NotificationConstructorOptions,
+    ipcMain,
+    IpcMainEvent
 } from 'electron';
-
+import { MainThreadEvent } from './events';
 import * as path from 'path';
 import * as url from 'url';
+
 
 //the app window object
 let mainWindow: BrowserWindow;
@@ -80,7 +82,12 @@ app.on('activate', () => {
  * IPC Events
  * From the Rendering Thread
  */
-ipcMain.on('notification', (event, notifOptions: NotificationConstructorOptions) => {
+ipcMain.on(MainThreadEvent.Ping, (event: IpcMainEvent) => {
+    console.log("Received an Ping from the Render Thread !");
+    event.sender.send('pong');
+});
+
+ipcMain.on(MainThreadEvent.Notification, (event: IpcMainEvent, notifOptions: NotificationConstructorOptions) => {
     let notif:Notification = new Notification({
         title: notifOptions.title,
         body: notifOptions.body

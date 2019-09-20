@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * Main Thread
  */
 var electron_1 = require("electron");
+var events_1 = require("./events");
 var path = require("path");
 var url = require("url");
 //the app window object
@@ -61,7 +62,11 @@ electron_1.app.on('activate', function () {
  * IPC Events
  * From the Rendering Thread
  */
-electron_1.ipcMain.on('notification', function (event, notifOptions) {
+electron_1.ipcMain.on(events_1.MainThreadEvent.Ping, function (event) {
+    console.log("Received an Ping from the Render Thread !");
+    event.sender.send('pong');
+});
+electron_1.ipcMain.on(events_1.MainThreadEvent.Notification, function (event, notifOptions) {
     var notif = new electron_1.Notification({
         title: notifOptions.title,
         body: notifOptions.body

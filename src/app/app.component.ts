@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IpcService } from './services/ipc.service';
-import { NotificationConstructorOptions } from 'electron';
+import { IpcService } from './services/electron/ipc.service';
+import { IpcRendererEvent } from 'electron';
+import { MainThreadEvent } from 'electron/events';
 
 @Component({
   selector: 'app-root',
@@ -12,17 +13,12 @@ export class AppComponent
     constructor(private ipc: IpcService){ }
 
 
-    /**
-     * Display Native Notification
-     */
-    public nativeNotification(): void
+    public sendPing(): void
     {
-        const notifOptions: NotificationConstructorOptions = {
-            title: "Hello World !",
-            body: "Waow ! an native notification !"
-        }
+        this.ipc.once('pong', (event: IpcRendererEvent) => {
+            console.log('pong from the Main Thread !');
+        });
 
-        //send an notification event to the Main Thread
-        this.ipc.send('notification', notifOptions);
+        this.ipc.send(MainThreadEvent.Ping);
     }
 }
