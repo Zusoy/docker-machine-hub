@@ -21,9 +21,6 @@ let mainWindow: BrowserWindow;
 //enable dev tools
 const openDevTools: boolean = false;
 
-//display ready notification
-const readyNotification: boolean = true;
-
 const createWindow = () => 
 {
     //create the window
@@ -49,15 +46,6 @@ const createWindow = () =>
     if (openDevTools)
         mainWindow.webContents.openDevTools()
     
-    //display the ready notif if enabled
-    if (readyNotification) {
-        let notif = new Notification({
-            title: "App Ready !",
-            body: "Your Angular Native app is ready ! Happy coding !"
-        });
-        notif.show();
-    }
-    
     //set closed event
     mainWindow.on('closed', () => {
         mainWindow = null
@@ -71,11 +59,11 @@ app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit()
-})
+});
 
 app.on('activate', () => {
     if (mainWindow === null) createWindow()
-})
+});
 
 
 /**

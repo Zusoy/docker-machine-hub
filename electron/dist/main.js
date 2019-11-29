@@ -12,8 +12,6 @@ var url = require("url");
 var mainWindow;
 //enable dev tools
 var openDevTools = false;
-//display ready notification
-var readyNotification = true;
 var createWindow = function () {
     //create the window
     mainWindow = new electron_1.BrowserWindow({
@@ -33,14 +31,6 @@ var createWindow = function () {
     //open dev tools if enabled
     if (openDevTools)
         mainWindow.webContents.openDevTools();
-    //display the ready notif if enabled
-    if (readyNotification) {
-        var notif = new electron_1.Notification({
-            title: "App Ready !",
-            body: "Your Angular Native app is ready ! Happy coding !"
-        });
-        notif.show();
-    }
     //set closed event
     mainWindow.on('closed', function () {
         mainWindow = null;

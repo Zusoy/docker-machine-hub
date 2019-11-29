@@ -17,7 +17,6 @@ export class IpcService
      */
     private ipc: IpcRenderer | undefined;
 
-
     /**
      * IpcService Constructor
      */
@@ -37,7 +36,6 @@ export class IpcService
         }
     }
 
-
     /**
      * Listen an Event from the Main Thread 
      */
@@ -49,7 +47,6 @@ export class IpcService
         this.ipc.on(channel, listener);
     }
 
-
     /**
      * Listen one Time an Event from the Main Thread
      */
@@ -60,7 +57,6 @@ export class IpcService
         
         this.ipc.once(channel, listener);
     }
-
 
     /**
      * Send an Event to the Main Thread
