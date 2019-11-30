@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <i class="fab fa-docker"></i>
+        <span id="app-toolbar-title">Docker-Machine HUB</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-tab-group>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <i class="fas fa-tasks tab-icon"></i>
+            Manage Machines
+        </ng-template>
+        <app-machine-inspector></app-machine-inspector>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <i class="fas fa-tools tab-icon"></i>
+            Create Machine
+        </ng-template>
+        <app-machine-creator></app-machine-creator>
+    </mat-tab>
+</mat-tab-group>
