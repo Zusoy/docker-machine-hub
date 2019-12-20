@@ -15,7 +15,6 @@ import { MatMenuModule } from '@angular/material/menu';
 // components import
 import { AppComponent } from './app.component';
 import { AppToolbarComponent } from './app-toolbar/app-toolbar.component';
-import { MenuComponent } from './app-toolbar/menu/menu.component';
 import { MachineCreatorComponent } from './machine-creator/machine-creator.component';
 import { MachineInspectorComponent } from './machine-inspector/machine-inspector.component';
 import { InspectDialogComponent } from './machine-inspector/inspect-dialog/inspect-dialog.component';
@@ -24,7 +23,6 @@ import { InspectDialogComponent } from './machine-inspector/inspect-dialog/inspe
   declarations: [
     AppComponent,
     AppToolbarComponent,
-    MenuComponent,
     MachineCreatorComponent,
     MachineInspectorComponent,
     InspectDialogComponent

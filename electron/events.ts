@@ -4,5 +4,6 @@
 export enum MainThreadEvent 
 {
     Ping = "ping",
-    Notification = "notification"
+    Notification = "notification",
+    BrowserLink = "browserLink"
 }

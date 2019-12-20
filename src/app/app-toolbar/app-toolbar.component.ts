@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: "app-toolbar",
@@ -7,5 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppToolbarComponent
 {
-    
+    @Output()
+    private syncAction: EventEmitter<any> = new EventEmitter<any>();
+
+    public syncAppMachines(): void
+    {
+        this.syncAction.emit(null);
+    }
 }

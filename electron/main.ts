@@ -8,7 +8,8 @@ import {
     Notification,
     NotificationConstructorOptions,
     ipcMain,
-    IpcMainEvent
+    IpcMainEvent,
+    shell
 } from 'electron';
 import { MainThreadEvent } from './events';
 import * as path from 'path';
@@ -82,4 +83,8 @@ ipcMain.on(MainThreadEvent.Notification, (event: IpcMainEvent, notifOptions: Not
     });
 
     notif.show();
+});
+
+ipcMain.on(MainThreadEvent.BrowserLink, (event: IpcMainEvent, link: string) => {
+    shell.openExternal(link);
 });

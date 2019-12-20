@@ -1,1 +1,20 @@
-<app-menu></app-menu>
+<app-toolbar (syncAction)="onSyncAction($event)"></app-toolbar>
+
+<!-- Navigation Content -->
+<mat-tab-group>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <i class="fas fa-tasks tab-icon"></i>
+            Manage Machines
+        </ng-template>
+        <app-machine-inspector [machines]="machines"></app-machine-inspector>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <i class="fas fa-tools tab-icon"></i>
+            Create Machine
+        </ng-template>
+        <app-machine-creator></app-machine-creator>
+    </mat-tab>
+</mat-tab-group>
+<!-- #Navigation Content -->

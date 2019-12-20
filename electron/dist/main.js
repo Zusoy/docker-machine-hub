@@ -63,4 +63,7 @@ electron_1.ipcMain.on(events_1.MainThreadEvent.Notification, function (event, no
     });
     notif.show();
 });
+electron_1.ipcMain.on(events_1.MainThreadEvent.BrowserLink, function (event, link) {
+    electron_1.shell.openExternal(link);
+});
 //# sourceMappingURL=main.js.map

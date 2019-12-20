@@ -1,7 +1,20 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
         <i class="fab fa-docker"></i>
-        <span id="app-toolbar-title">Docker-Machine HUB</span>
+        <span id="app-toolbar-title"> Docker-Machine HUB</span>
         <span class="app-toolbar-spacer"></span>
+        
+        <!-- Actions Menu -->
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="syncAppMachines()">
+                <mat-icon>refresh</mat-icon>
+                <span>Sync Machines</span>
+            </button>
+        </mat-menu>
+        <!-- #Actions Menu -->
+
     </mat-toolbar-row>
 </mat-toolbar>
