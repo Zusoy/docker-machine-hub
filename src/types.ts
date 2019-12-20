@@ -1,8 +1,9 @@
 export interface Machine
 {
     Name: string;
-    State: string;
+    State: MachineState;
     ConfigVersion: number;
+    StateColor: string,
     DriverName: string;
     Driver: Driver;
     HostOptions: HostOptions;
@@ -98,4 +99,10 @@ export interface SwarmOptions
     Master: boolean;
     Overcommit: number;
     Strategy: string;
+}
+
+export enum MachineState
+{
+    STOPPED = "stopped",
+    RUNNING = "running"
 }

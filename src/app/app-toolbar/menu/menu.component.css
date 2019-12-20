@@ -5,3 +5,7 @@
 .tab-icon{
     margin-right: 5px;
 }
+
+.app-toolbar-spacer{
+    flex: 1 1 auto;
+}
