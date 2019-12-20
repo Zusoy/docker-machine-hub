@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ChildProcessService } from 'ngx-childprocess';
+import { Machine, MachineState } from 'src/types';
 
 @Injectable({
     providedIn: 'root'
@@ -10,21 +11,37 @@ export class DockerMachineService
 
     public getMachinesName(): string[]
     {
-        let machines = this.run("docker-machine ls --format {{.Name}} ");
+        const machines: string = this.run("docker-machine ls --format {{.Name}} ");
         return machines.split('\n')
             .map(machineName => machineName.trim())
             .filter(machine => machine.length > 0 && machine != null);
-    } 
-
-    public inspectMachine(name: string): object
-    {
-        let machine = this.run(`docker-machine inspect ${name}`);
-        return JSON.parse(machine);
     }
 
-    public inspectAllMachines(): object[]
+    public getMachineState(machineName: string): MachineState
     {
-        let machines = [];
+        const state: string = this.run(
+            `docker-machine status ${machineName}`
+        );
+
+        return MachineState[state.toUpperCase().trim()];
+    }
+
+    public inspectMachine(machineName: string): Machine
+    {
+        const result: string = this.run(`docker-machine inspect ${machineName}`);
+        let machine: Machine = JSON.parse(result);
+
+        machine.State = this.getMachineState(machineName);
+        machine.StateColor = machine.State === MachineState.RUNNING
+            ? "primary"
+            : "accent";
+
+        return machine;
+    }
+
+    public inspectAllMachines(): Machine[]
+    {
+        const machines: Machine[] = [];
         const machineNames = this.getMachinesName();
 
         machineNames.forEach(machineName => {

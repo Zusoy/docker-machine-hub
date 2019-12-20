@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>{{data.machine.Name}}</h1>
+<div mat-dialog-content>
+    <mat-tab-group>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <i class="fas fa-laptop tab-icon"></i>
+                Machine
+            </ng-template>
+            Machine data
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <i class="fas fa-screwdriver tab-icon"></i>
+                Driver
+            </ng-template>
+            Driver data
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <i class="fas fa-cogs tab-icon"></i>
+                Host Options
+            </ng-template>
+            Host data
+        </mat-tab>
+    </mat-tab-group>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="closeModal()">Close</button>
+</div>
