@@ -51,6 +51,11 @@ export class DockerMachineService
         return machines;
     }
 
+    public asyncStopMachine(machine: Machine): Promise<any>
+    {
+        return this.asyncRun(`docker-machine stop ${machine.Name}`);
+    }
+
     private run(command: string, options: [] = []): string
     {
         const process = this.mainProcess.childProcess.execSync(
@@ -59,5 +64,17 @@ export class DockerMachineService
         );
 
         return process.toString();
+    }
+
+    private asyncRun(command: string, options: [] = []): Promise<any>
+    {
+        return new Promise((resolve, reject) => {
+            this.mainProcess.childProcess.exec(command, options, (error, stdout, stderr) => {
+                if (error) return reject(error);
+                if (stderr) return reject(stderr);
+
+                resolve(stdout);
+            });
+        });
     }
 }

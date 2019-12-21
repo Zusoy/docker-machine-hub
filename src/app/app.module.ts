@@ -9,8 +9,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 // components import
 import { AppComponent } from './app.component';
@@ -37,8 +39,10 @@ import { InspectDialogComponent } from './machine-inspector/inspect-dialog/inspe
     MatTabsModule,
     MatTableModule,
     MatDialogModule,
+    MatSnackBarModule,
     MatChipsModule,
-    MatMenuModule
+    MatMenuModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent],

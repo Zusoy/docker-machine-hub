@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Machine } from 'src/types';
 import { InspectDialogComponent } from './inspect-dialog/inspect-dialog.component';
@@ -15,6 +15,9 @@ export class MachineInspectorComponent
     @Input()
     private machines: Machine[] = [];
     private columns: string[] = ['name', 'state', 'ip', 'driver', 'actions'];
+
+    @Output()
+    private stopMachine: EventEmitter<Machine> = new EventEmitter<Machine>();
 
     constructor (private dialog: MatDialog, private ipc: IpcService) {}
 
@@ -33,7 +36,15 @@ export class MachineInspectorComponent
 
     private openMachineLocalhost(machine: Machine): void
     {
+        if (!machine.Driver.IPAddress) 
+            return; 
+
         const link = `http://${machine.Driver.IPAddress}`;
         this.ipc.send(MainThreadEvent.BrowserLink, link);
+    }
+
+    private stopMachineEvent(machine: Machine): void
+    {
+        this.stopMachine.emit(machine);
     }
 }
